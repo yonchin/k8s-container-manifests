@@ -14,7 +14,7 @@ KUBELET_HOSTNAME="--hostname-override=172.16.8.65"
 KUBELET_API_SERVER="--api-servers=http://172.16.11.244:8080"
 
 # Add your own!
-KUBELET_ARGS="--pod-infra-container-image=docker.repo:5000/kube/pause:0.8.0 \
+KUBELET_ARGS="--pod-infra-container-image=docker.repo:5000/kube/pause-ppc64le:3.0 \
               --register-node=true \
               --cluster-dns=10.254.53.53 \
               --cluster-domain=cluster.local --config=/etc/kubernetes/manifests"
