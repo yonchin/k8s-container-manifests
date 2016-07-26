@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: kube-scheduler
+    namespace: kube-system
+spec:
+    hostNetwork: true
+    containers:
+    - name: kube-scheduler
+      image: index.tenxcloud.com/google_containers/kube-scheduler-ppc64le:v1.3.0
+      command:
+      - /usr/local/bin/kube-scheduler
+      - --master=http://172.16.11.244:8080
+      - --leader-elect=true
+

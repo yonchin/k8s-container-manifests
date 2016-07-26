@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: kube-apiserver
+    namespace: kube-system
+spec:
+    hostNetwork: true
+    containers:
+    - name: kube-apiserver
+      image: index.tenxcloud.com/google_containers/kube-apiserver-ppc64le:v1.3.0 
+      command:
+      - /usr/local/bin/kube-apiserver
+      - --insecure-bind-address=0.0.0.0
+      - --etcd-servers=http://172.16.11.244:4001
+      - --advertise-address=172.16.11.244
+      - --allow-privileged=true
+      - --service-cluster-ip-range=10.254.0.0/16
+      - --admission-control=NamespaceLifecycle,LimitRanger,ResourceQuota
+      - --runtime-config=extensions/v1beta1=true, extensions/v1beta1/thirdpartresources=true
+      ports:
+      - containerPort: 8080
+        hostPort: 8080
+        name: local
